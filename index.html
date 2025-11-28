@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tom Hartl – Personal Website</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --accent: #1e88e5;
+      --bg: #f7f9fc;
+      --muted: #777;
+      --card: #fff;
+      --text: #1c1c1c;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    header{
+      background:var(--card);
+      padding:48px 20px 28px;
+      text-align:center;
+      border-bottom:1px solid #e9eef6;
+    }
+
+    header h1{
+      margin:0;
+      font-size:2.4rem;
+      font-weight:700;
+    }
+
+    .job-title{
+      margin-top:8px;
+      font-size:1.05rem;
+      color:#444;
+    }
+
+    .lang-switch{
+      margin-top:18px;
+    }
+
+    .lang-switch button{
+      background:var(--accent);
+      color:#fff;
+      border:0;
+      padding:10px 16px;
+      border-radius:8px;
+      font-weight:600;
+      cursor:pointer;
+    }
+    .lang-switch button:focus{outline:3px solid rgba(30,136,229,0.18)}
+
+    /* Content wrapper ensures both language blocks share the same space */
+    #content-wrapper{
+      max-width:1000px;
+      margin:36px auto;
+      padding:0 20px;
+      position:relative; /* children will be absolute */
+      transition: min-height 200ms ease;
+      /* small safeguard min-height */
+      min-height: 200px;
+    }
+
+    /* language sections are stacked on top of each other */
+    .lang-section{
+      position:absolute;
+      inset:0; /* top:0; right:0; bottom:0; left:0 */
+      width:100%;
+      display:block;
+      padding-top:0;
+      transition: opacity 320ms ease, transform 320ms ease;
+      transform-origin: top center;
+      pointer-events: auto;
+      will-change: opacity, transform;
+      overflow:auto;
+    }
+
+    .lang-section.hidden{
+      opacity:0;
+      transform: translateY(6px);
+      pointer-events: none;
+      visibility: hidden;
+    }
+
+    .lang-section.visible{
+      opacity:1;
+      transform: translateY(0);
+      pointer-events: auto;
+      visibility: visible;
+    }
+
+    /* content inside language sections */
+    .hero{
+      display:flex;
+      gap:32px;
+      align-items:center;
+      justify-content:center;
+      flex-wrap:wrap;
+      padding:28px 0 18px;
+    }
+
+    .hero img{
+      width:200px;
+      height:200px;
+      border-radius:50%;
+      object-fit:cover;
+      background:#ddd;
+      flex:0 0 200px;
+    }
+
+    .hero-text{
+      max-width:600px;
+    }
+
+    .hero-text h2{
+      margin:0 0 10px;
+      font-size:1.7rem;
+    }
+
+    .hero-text p{
+      margin:0 0 10px;
+      color:#444;
+      line-height:1.55;
+    }
+
+    section{
+      max-width:900px;
+      margin:18px auto 0;
+    }
+
+    h3{
+      color:var(--accent);
+      margin-bottom:10px;
+      font-size:1.25rem;
+    }
+
+    .cv-item{
+      background:var(--card);
+      padding:18px;
+      border-radius:10px;
+      box-shadow:0 6px 18px rgba(20,30,50,0.04);
+      margin-bottom:14px;
+    }
+
+    .cv-item h4{margin:0;font-size:1.05rem}
+    .cv-item span{color:#888;font-size:0.95rem}
+    .cv-item p{margin:8px 0 0;color:#444}
+
+    footer{
+      text-align:center;
+      color:var(--muted);
+      font-size:0.95rem;
+      padding:36px 20px;
+    }
+
+    /* Responsive */
+    @media (max-width:720px){
+      header{padding:36px 14px 22px}
+      .hero img{width:140px;height:140px;flex:0 0 140px}
+      .hero-text h2{font-size:1.4rem}
+      #content-wrapper{margin:24px auto}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Tom Hartl</h1>
+  <div class="job-title" id="jobTitle">Amt für Statistik und Wahlen Leipzig</div>
+
+  <div class="lang-switch" style="display:flex;justify-content:center">
+    <button id="toggleBtn" aria-pressed="false" aria-label="Switch language">Deutsch</button>
+  </div>
+</header>
+
+<!-- CONTENT WRAPPER: both languages are absolutely stacked inside -->
+<div id="content-wrapper" role="region" aria-live="polite">
+
+  <!-- ENGLISH block -->
+  <main id="en" class="lang-section visible" lang="en" aria-hidden="false">
+    <div class="hero" role="banner">
+      <img src="Lichtbild Tom Hartl.jpg" alt="Portrait of Tom Hartl" />
+      <div class="hero-text">
+        <h2>Hello, I’m Tom 👋</h2>
+        <p>
+          I’m a data-focused economist and statistician with experience in economics,
+          open data, and statistical programming. My work spans data science, social
+          science research, and open-data infrastructure — using R, Python, Stata,
+          and modern statistical methods.
+        </p>
+        <p>
+          I currently work at the <strong>Amt für Statistik und Wahlen Leipzig</strong>,
+          contributing to data management, reporting, and public statistical insights.
+        </p>
+      </div>
+    </div>
+
+    <section aria-labelledby="eduEN">
+      <h3 id="eduEN">Education</h3>
+
+      <div class="cv-item">
+        <h4>M.Sc. Economics: Data Science & Policy – MLU Halle-Wittenberg</h4>
+        <span>2020–2024</span>
+        <p>Focused on econometrics, causal inference, data science, and policy evaluation.</p>
+      </div>
+
+      <div class="cv-item">
+        <h4>B.Sc. Political Science – TUM / Hochschule für Politik München</h4>
+        <span>2016–2019</span>
+        <p>Specialization in statistics and data analysis.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="expEN">
+      <h3 id="expEN">Selected Experience</h3>
+
+      <div class="cv-item">
+        <h4>Research Associate – Open (Meta-)Data Project, SOEP (DIW)</h4>
+        <span>2024</span>
+        <p>Developing R/Python/Stata packages, designing open-data formats, and presenting research.</p>
+      </div>
+
+      <div class="cv-item">
+        <h4>Voluntary Social Year – Advena Hospiz Leipzig</h4>
+        <span>2019–2020</span>
+        <p>Supporting hospice care and contributing to educational projects.</p>
+      </div>
+
+      <div class="cv-item">
+        <h4>Student Research Positions – IWH Halle & University of Leipzig</h4>
+        <span>2021–2023</span>
+        <p>Macroeconomic and policy research, data analysis, and R visualisation.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- GERMAN block -->
+  <main id="de" class="lang-section hidden" lang="de" aria-hidden="true">
+    <div class="hero" role="banner">
+      <img src="Lichtbild Tom Hartl.jpg" alt="Porträt von Tom Hartl" />
+      <div class="hero-text">
+        <h2>Hallo, ich bin Tom 👋</h2>
+        <p>
+          Ich bin ein Ökonom und Statistiker mit Erfahrung in
+          Wirtschaftsforschung, Open Data und statistischer Programmierung.
+          Meine Arbeit umfasst Data Science, sozialwissenschaftliche Forschung und
+          Open-Data-Infrastruktur — mit praktischer Erfahrung in R, Python, Stata
+          und modernen statistischen Methoden.
+        </p>
+        <p>
+          Aktuell arbeite ich beim <strong>Amt für Statistik und Wahlen Leipzig</strong>
+          im Bereich Datenmanagement und öffentlicher Statistik.
+        </p>
+      </div>
+    </div>
+
+    <section aria-labelledby="eduDE">
+      <h3 id="eduDE">Ausbildung</h3>
+
+      <div class="cv-item">
+        <h4>M.Sc. Economics: Data Science & Policy – MLU Halle-Wittenberg</h4>
+        <span>2020–2024</span>
+        <p>Schwerpunkte: Ökonometrie, Kausalanalyse, Data Science und Politikbewertung.</p>
+      </div>
+
+      <div class="cv-item">
+        <h4>B.Sc. Politikwissenschaft – TUM / Hochschule für Politik München</h4>
+        <span>2016–2019</span>
+        <p>Spezialisierung in Statistik und Datenanalyse.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="expDE">
+      <h3 id="expDE">Berufserfahrung (Auswahl)</h3>
+
+      <div class="cv-item">
+        <h4>Wissenschaftlicher Mitarbeiter – Open (Meta-)Data Projekt, SOEP (DIW)</h4>
+        <span>2024</span>
+        <p>Entwicklung von R-, Python- und Stata-Paketen, Konzeption von Open-Data-Formaten und Präsentationen.</p>
+      </div>
+
+      <div class="cv-item">
+        <h4>Freiwilliges Soziales Jahr – Advena Hospiz Leipzig</h4>
+        <span>2019–2020</span>
+        <p>Unterstützung in der Hospizpflege und Mitarbeit in Bildungsprojekten.</p>
+      </div>
+
+      <div class="cv-item">
+        <h4>Studentische Hilfskraft – IWH Halle & Universität Leipzig</h4>
+        <span>2021–2023</span>
+        <p>Makroökonomische Forschung, Datenanalyse und Visualisierung mit R.</p>
+      </div>
+    </section>
+  </main>
+
+</div>
+
+<footer>
+  © 2025 Tom Hartl — Leipzig
+</footer>
+<script>
+  (function(){
+    const en = document.getElementById('en');
+    const de = document.getElementById('de');
+    const wrapper = document.getElementById('content-wrapper');
+    const btn = document.getElementById('toggleBtn');
+
+    // DEFAULT LANGUAGE = GERMAN
+    let current = 'de';
+
+    // set wrapper height to the taller of the two sections
+    function adjustWrapperHeight(){
+      // temporarily show both for measuring height
+      en.classList.remove('hidden'); en.classList.add('visible');
+      de.classList.remove('hidden'); de.classList.add('visible');
+
+      requestAnimationFrame(() => {
+        const hEn = en.scrollHeight;
+        const hDe = de.scrollHeight;
+        const maxH = Math.max(hEn, hDe, 300);
+        wrapper.style.minHeight = maxH + 'px';
+
+        // restore actual state
+        if (current === 'en') {
+          en.classList.add('visible'); en.classList.remove('hidden');
+          de.classList.add('hidden'); de.classList.remove('visible');
+        } else {
+          de.classList.add('visible'); de.classList.remove('hidden');
+          en.classList.add('hidden'); en.classList.remove('visible');
+        }
+      });
+    }
+
+    // Debounced resize handler
+    let resizeTimer;
+    function onResize(){
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(adjustWrapperHeight, 120);
+    }
+
+    // Toggle language handler
+    function toggle(){
+      if (current === 'en'){
+        // switch to DE
+        en.classList.remove('visible'); en.classList.add('hidden');
+        en.setAttribute('aria-hidden','true');
+
+        de.classList.remove('hidden'); de.classList.add('visible');
+        de.setAttribute('aria-hidden','false');
+
+        current = 'de';
+        btn.textContent = 'English';
+        btn.setAttribute('aria-pressed','true');
+      } else {
+        // switch to EN
+        de.classList.remove('visible'); de.classList.add('hidden');
+        de.setAttribute('aria-hidden','true');
+
+        en.classList.remove('hidden'); en.classList.add('visible');
+        en.setAttribute('aria-hidden','false');
+
+        current = 'en';
+        btn.textContent = 'Deutsch';
+        btn.setAttribute('aria-pressed','false');
+      }
+
+      setTimeout(adjustWrapperHeight, 320);
+    }
+
+    // --- INITIALIZATION (GERMAN DEFAULT) ---
+    document.addEventListener('DOMContentLoaded', function(){
+
+      // DE visible
+      de.classList.add('visible'); 
+      de.classList.remove('hidden');
+      de.setAttribute('aria-hidden','false');
+
+      // EN hidden
+      en.classList.add('hidden'); 
+      en.classList.remove('visible');
+      en.setAttribute('aria-hidden','true');
+
+      // Button should switch TO English
+      btn.textContent = 'English';
+      btn.setAttribute('aria-pressed','true');
+
+      btn.addEventListener('click', toggle);
+
+      adjustWrapperHeight();
+      window.addEventListener('resize', onResize);
+    });
+
+  })();
+</script>
+
+
+</body>
+</html>
